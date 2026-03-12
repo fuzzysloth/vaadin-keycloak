@@ -19,7 +19,7 @@
         <!-- this parameter is needed as spring-boot bom overwrites it -->
         <selenium.version>4.5.3</selenium.version>
         <!-- selenium is so much verbose -->
-        <maven.test.redirectTestOutputToFile>true</maven.test.redirectTestOutputToFile>        
+        <maven.test.redirectTestOutputToFile>true</maven.test.redirectTestOutputToFile>
     </properties>
 
     <dependencyManagement>
@@ -38,7 +38,7 @@
         <dependency>
             <groupId>com.vaadin</groupId>
             <!-- Replace artifactId with vaadin-core to use only free components -->
-            <artifactId>vaadin</artifactId>
+            <artifactId>vaadin-core</artifactId>
         </dependency>
         <dependency>
             <groupId>com.vaadin</groupId>

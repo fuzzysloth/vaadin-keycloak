@@ -17,7 +17,8 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
+
+import static org.springframework.security.config.Customizer.withDefaults;
 
 @EnableWebSecurity
 @Configuration
@@ -57,13 +58,12 @@ public class SecurityConfiguration extends VaadinWebSecurity {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().requestMatchers(new AntPathRequestMatcher("/images/*.png")).permitAll();
+        http.authorizeRequests(requests -> requests.requestMatchers(new AntPathRequestMatcher("/images/*.png")).permitAll());
 
-        http.oauth2Login()
-                .and()
-                .logout()
-                .addLogoutHandler(keycloakLogoutHandler)
-                .logoutSuccessUrl("/");
+        http.oauth2Login(withDefaults())
+                .logout(logout -> logout
+                        .addLogoutHandler(keycloakLogoutHandler)
+                        .logoutSuccessUrl("/"));
 
         super.configure(http);
     }
